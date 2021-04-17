@@ -8,16 +8,15 @@
 	<properties resource='mysql.jdbc.properties' />
 
 	<settings>
-<!-- instead of setting here, it is possible to set Configuration properties after creating SqlSessionFactory  -->
 		<setting name="aggressiveLazyLoading" value="false" />
 	</settings>
 	
-	<!--<typeAliases>-->
-		<!--<typeAlias alias="User" type="ru.omsu.imit.voting.model.User" />-->
+	<typeAliases>
+		<typeAlias alias="User" type="ru.omsu.imit.novikova.model.User" />
 		<!--<typeAlias alias="Voter" type="ru.omsu.imit.voting.model.Voter" />-->
 		<!--<typeAlias alias="Candidate" type="ru.omsu.imit.voting.model.Candidate" />-->
 		<!--<typeAlias alias="Bulletin" type="ru.omsu.imit.voting.model.Bulletin" />-->
-	<!--</typeAliases>-->
+	</typeAliases>
 
 	<environments default="development">
 		<environment id="development">
@@ -31,9 +30,9 @@
 		</environment>
 	</environments>
 
-	<!--<mappers>-->
-		<!--<mapper resource="ru/omsu/imit/voting/mappers/User.xml" />-->
-		<!--<package name="ru.omsu.imit.voting.mappers" />-->
-	<!--</mappers>-->
+	<mappers>
+		<mapper resource="ru.omsu.imit.novikova/mybatis.mappers/User.xml" />
+		<package name="ru.omsu.imit.novikova.mappers" />
+	</mappers>
 
 </configuration>
