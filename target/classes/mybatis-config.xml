@@ -13,7 +13,7 @@
 	
 	<typeAliases>
 		<typeAlias alias="User" type="ru.omsu.imit.novikova.model.User" />
-		<!--<typeAlias alias="Voter" type="ru.omsu.imit.voting.model.Voter" />-->
+		<typeAlias alias="Human" type="ru.omsu.imit.novikova.model.Human" />
 		<!--<typeAlias alias="Candidate" type="ru.omsu.imit.voting.model.Candidate" />-->
 		<!--<typeAlias alias="Bulletin" type="ru.omsu.imit.voting.model.Bulletin" />-->
 	</typeAliases>

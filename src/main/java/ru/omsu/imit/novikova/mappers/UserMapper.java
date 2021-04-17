@@ -5,8 +5,7 @@ import ru.omsu.imit.novikova.model.User;
 
 public interface UserMapper {
 
-    @Insert("INSERT INTO USER  ( phone, email, password) VALUES" +
-            "( #{phone}, #{email}, #{password})")
+    @Insert("INSERT INTO shelter_bd.USER  (phone, email, password) VALUES(#{phone}, #{email}, #{password})")
     @Options(useGeneratedKeys = true)
     public Integer insert(User user);
 
