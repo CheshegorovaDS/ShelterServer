@@ -39,6 +39,48 @@ public class HumanService {
         }
     }
 
+    public Response getById(int id) {
+        LOGGER.debug("Get Human By id " + id);
+        try {
+            Human human = humanDao.getById(id);
+            String response = GSON.toJson(new HumanResponse(human.getId(), human.getUser().getPhone(),human.getUser().getEmail(),
+                    human.getUser().getPassword(), human.getFirstName(), human.getLastName(), human.getPatronymic(),
+                    human.getBirthdate(), human.getCountry(), human.getCity(), human.getRegistrationDate()));
+            return Response.ok(response, MediaType.APPLICATION_JSON).build();
+        } catch (ShelterException ex) {
+            return ShelterUtils.failureResponse(ex);
+        }
+    }
+
+    public Response getByEmail(String email) {
+        LOGGER.debug("Get Human By email " + email);
+        try {
+            Human human = humanDao.getByEmail(email);
+            String response = GSON.toJson(new HumanResponse(human.getId(), human.getUser().getPhone(),human.getUser().getEmail(),
+                    human.getUser().getPassword(), human.getFirstName(), human.getLastName(), human.getPatronymic(),
+                    human.getBirthdate(), human.getCountry(), human.getCity(), human.getRegistrationDate()));
+            return Response.ok(response, MediaType.APPLICATION_JSON).build();
+        } catch (ShelterException ex) {
+            return ShelterUtils.failureResponse(ex);
+        }
+    }
+
+    public Response changeHuman(int id, String json) {
+        LOGGER.debug("Change Human By id " + id);
+        try {
+            HumanRequest request = ShelterUtils.getClassInstanceFromJson(GSON, json, HumanRequest.class);
+            Human human = humanDao.getById(id);
+            human.updateUser(request.getPhone(), request.getEmail(), request.getPassword());
+            humanDao.changeHuman(human.getId(), human);
+            String response = GSON.toJson(new HumanResponse(human.getId(), human.getUser().getPhone(),human.getUser().getEmail(),
+                    human.getUser().getPassword(), human.getFirstName(), human.getLastName(), human.getPatronymic(),
+                    human.getBirthdate(), human.getCountry(), human.getCity(), human.getRegistrationDate()));
+            return Response.ok(response, MediaType.APPLICATION_JSON).build();
+        } catch (ShelterException ex) {
+            return ShelterUtils.failureResponse(ex);
+        }
+    }
+
     public Response deleteById(int id, String json) {
         LOGGER.debug("Delete Human By id " + id);
         humanDao.delete(id);

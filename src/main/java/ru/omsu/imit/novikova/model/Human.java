@@ -106,6 +106,12 @@ public class Human {
         this.registrationDate = registrationDate;
     }
 
+    public void updateUser(String phone, String email, String password) {
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setPassword(password);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

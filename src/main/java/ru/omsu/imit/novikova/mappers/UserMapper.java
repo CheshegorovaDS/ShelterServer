@@ -12,6 +12,9 @@ public interface UserMapper {
     @Select("SELECT id, phone,  email, password FROM shelter_bd.USER WHERE id = #{id}")
     public User getById(int id);
 
+    @Select("SELECT id, phone,  email, password FROM shelter_bd.USER WHERE email = #{email}")
+    public User getByEmail(String email);
+
     @Update("UPDATE shelter_bd.USER SET phone = #{us.phone}, email = #{us.email}, password = #{us.password} WHERE id = #{id}")
     public void changeUser(@Param("id")int id, @Param("us") User us);
 

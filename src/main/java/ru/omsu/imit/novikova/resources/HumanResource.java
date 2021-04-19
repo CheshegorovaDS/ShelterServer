@@ -18,6 +18,27 @@ public class HumanResource {
         return humanService.insert(json);
     }
 
+    @GET
+    @Path("/human/{id}")
+    @Produces("application/json")
+    public Response getById(@PathParam(value = "id") int id) {
+        return humanService.getById(id);
+    }
+
+    @GET
+    @Path("/human/email={email}")
+    @Produces("application/json")
+    public Response getByEmail(@PathParam(value = "email") String email) {
+        return humanService.getByEmail(email);
+    }
+
+    @PUT
+    @Path("/human/{id}")
+    @Produces("application/json")
+    public Response editById(@PathParam(value = "id") int id, String json) {
+        return humanService.changeHuman(id, json);
+    }
+
     @DELETE
     @Path("/human/{id}")
     @Produces("application/json")

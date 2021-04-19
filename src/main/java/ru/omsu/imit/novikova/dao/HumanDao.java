@@ -9,7 +9,9 @@ public interface HumanDao {
 
     public Human getById(int id) throws ShelterException;
 
-    public void changeHuman(int id, Human newHumnan) throws ShelterException;
+    public Human getByEmail(String email) throws ShelterException;
+
+    public void changeHuman(int id, Human newHuman) throws ShelterException;
 
     public void deleteAll();
 

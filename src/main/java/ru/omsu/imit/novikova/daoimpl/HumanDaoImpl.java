@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import ru.omsu.imit.novikova.dao.HumanDao;
 import ru.omsu.imit.novikova.exception.ShelterException;
 import ru.omsu.imit.novikova.model.Human;
+import ru.omsu.imit.novikova.utils.ErrorCode;
 
 public class HumanDaoImpl extends BaseDAOImpl implements HumanDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(HumanDaoImpl.class);
@@ -29,28 +30,63 @@ public class HumanDaoImpl extends BaseDAOImpl implements HumanDao {
 
     @Override
     public Human getById(int id) throws ShelterException {
-        return null;
+        try (SqlSession sqlSession = getSession()) {
+            Human human = getHumanMapper(sqlSession).getById(id);
+            if(human == null){
+                throw new ShelterException(ErrorCode.ITEM_NOT_FOUND, Integer.toString(id));
+            }
+            return human;
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get Human By Id {}", ex);
+            throw ex;
+        }
     }
 
     @Override
-    public void changeHuman(int id, Human newHumnan) throws ShelterException {
+    public Human getByEmail(String email) throws ShelterException {
+        try (SqlSession sqlSession = getSession()) {
+            Human human = getHumanMapper(sqlSession).getByEmail(email);
+            if(human == null){
+                throw new ShelterException(ErrorCode.ITEM_NOT_FOUND, email);
+            }
+            return human;
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get Human By Email {}", ex);
+            throw ex;
+        }
+    }
 
+    @Override
+    public void changeHuman(int id, Human newHuman) throws ShelterException {
+        try (SqlSession sqlSession = getSession()) {
+            try {
+                getUserMapper(sqlSession).changeUser(id, newHuman.getUser());
+                getHumanMapper(sqlSession).changeHuman(id, newHuman);
+            } catch (RuntimeException ex) {
+                LOGGER.debug("Can't change Human {} {} ", id, ex);
+                sqlSession.rollback();
+                throw ex;
+            }
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void deleteAll() {
-//        LOGGER.debug("DAO Delete All People {}");
-//        try (SqlSession sqlSession = getSession()) {
-//            try {
-//                getHumanMapper(sqlSession).deleteAll();
-//                getUserMapper(sqlSession).deleteAll();
-//            } catch (RuntimeException ex) {
-//                LOGGER.debug("Can't delete all People {}", ex);
-//                sqlSession.rollback();
-//                throw ex;
-//            }
-//            sqlSession.commit();
-//        }
+        LOGGER.debug("DAO Delete All People {}");
+        try (SqlSession sqlSession = getSession()) {
+            try {
+                getHumanMapper(sqlSession).deleteAll();
+                getUserMapper(sqlSession).deleteAll();
+            } catch (RuntimeException ex) {
+                LOGGER.debug("Can't delete all People {}", ex);
+                sqlSession.rollback();
+                throw ex;
+            }
+            sqlSession.commit();
+        }
     }
 
     @Override
