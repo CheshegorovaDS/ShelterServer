@@ -9,16 +9,16 @@ public interface UserMapper {
     @Options(useGeneratedKeys = true)
     public Integer insert(User user);
 
-    @Select("SELECT id, phone,  email, password FROM USER WHERE id = #{id}")
+    @Select("SELECT id, phone,  email, password FROM shelter_bd.USER WHERE id = #{id}")
     public User getById(int id);
 
-    @Update("UPDATE USER SET phone = #{us.phone}, email = #{us.email}, password = #{us.password} WHERE id = #{id}")
+    @Update("UPDATE shelter_bd.USER SET phone = #{us.phone}, email = #{us.email}, password = #{us.password} WHERE id = #{id}")
     public void changeUser(@Param("id")int id, @Param("us") User us);
 
-    @Delete("DELETE FROM USER WHERE id = #{id}")
+    @Delete("DELETE FROM shelter_bd.USER WHERE id = #{id}")
     public int delete(@Param("id") int id);
 
-    @Delete("DELETE FROM USER")
+    @Delete("DELETE FROM shelter_bd.USER")
     public void deleteAll();
 
 }

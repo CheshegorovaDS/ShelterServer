@@ -19,4 +19,12 @@ public class AnnotationsHumanDaoTests extends BaseDAOTests {
 //        Voter voterFromDB = voterDAO.getById(voter.getId());
 //        checkVoterFields(voter, voterFromDB);
     }
+
+    @Test(expected = RuntimeException.class)
+    public void testInsertHumanWithNullName() {
+        Human human = new Human(0, "80001342422", "dg@mail.ru", "test",
+                null, "Пупкин", "Святославович", Date.valueOf("1954-7-1"),
+                "Россия", "Саранск", Date.valueOf("2020-7-1"));
+        humanDao.insert(human);
+    }
 }

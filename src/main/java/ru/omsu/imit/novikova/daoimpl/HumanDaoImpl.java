@@ -16,7 +16,7 @@ public class HumanDaoImpl extends BaseDAOImpl implements HumanDao {
         try (SqlSession sqlSession = getSession()) {
             try {
                 getUserMapper(sqlSession).insert(human.getUser());
-//                getHumanMapper(sqlSession).insert(human);
+                getHumanMapper(sqlSession).insert(human);
             } catch (RuntimeException ex) {
                 LOGGER.debug("Can't insert Human {}, {}", human, ex);
                 sqlSession.rollback();

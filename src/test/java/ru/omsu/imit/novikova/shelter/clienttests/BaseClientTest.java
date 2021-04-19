@@ -7,8 +7,13 @@ import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.omsu.imit.novikova.client.ShelterClient;
+import ru.omsu.imit.novikova.dao.HumanDao;
+import ru.omsu.imit.novikova.daoimpl.HumanDaoImpl;
+import ru.omsu.imit.novikova.model.Human;
+import ru.omsu.imit.novikova.rest.request.HumanRequest;
 import ru.omsu.imit.novikova.rest.response.EmptySuccessResponse;
 import ru.omsu.imit.novikova.rest.response.FailureResponse;
+import ru.omsu.imit.novikova.rest.response.HumanResponse;
 import ru.omsu.imit.novikova.server.ShelterServer;
 import ru.omsu.imit.novikova.server.config.Settings;
 import ru.omsu.imit.novikova.utils.ErrorCode;
@@ -16,7 +21,6 @@ import ru.omsu.imit.novikova.utils.MyBatisUtils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -24,7 +28,7 @@ import static org.junit.Assert.assertTrue;
 public class BaseClientTest {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BaseClientTest.class);
-//	private VoterDao voterDAO = new VoterDaoImpl();
+	private HumanDao humanDao = new HumanDaoImpl();
 
 	protected static ShelterClient client = new ShelterClient();
 	private static String baseURL;
@@ -51,10 +55,10 @@ public class BaseClientTest {
 			ShelterServer.stopServer();
 	}
 
-//	@Before
-//	public void clearDataBase() {
-//		voterDAO.deleteAll();
-//	}
+	@Before
+	public void clearDataBase() {
+		humanDao.deleteAll();
+	}
 	
 	public static String getBaseURL() {
 		return baseURL;
@@ -66,20 +70,20 @@ public class BaseClientTest {
 		assertEquals(expectedStatus, failureResponseObject.getErrorCode());
 	}
 
-	//Voter
+	//Human
 
-//	protected VoterResponse addVoter(VoterRequest request, ErrorCode expectedStatus) {
-//		Object response = client.post(baseURL + "/voter", request, VoterResponse.class);
-//		if (response instanceof VoterResponse) {
-//			assertEquals(ErrorCode.SUCCESS, expectedStatus);
-//			VoterResponse voterResponse = (VoterResponse) response;
-//			checkVoterFields(request,voterResponse);
-//			return voterResponse;
-//		} else {
-//			checkFailureResponse(response, expectedStatus);
-//			return null;
-//		}
-//	}
+	protected HumanResponse addHuman(HumanRequest request, ErrorCode expectedStatus) {
+		Object response = client.post(baseURL + "/human", request, HumanResponse.class);
+		if (response instanceof HumanResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			HumanResponse humanResponse = (HumanResponse) response;
+			checkHumanFields(request, humanResponse);
+			return humanResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
 //
 //	protected VoterResponse getVoterById(int id, ErrorCode expectedStatus) {
 //		Object response = client.get(baseURL + "/voter/" + id, VoterResponse.class);
@@ -94,67 +98,30 @@ public class BaseClientTest {
 //		}
 //	}
 //
-//	protected VoterResponse getVoterByPassport(String passport, ErrorCode expectedStatus) {
-//		Object response = client.get(baseURL + "/voter/passport=" + passport, VoterResponse.class);
-//		if (response instanceof VoterResponse) {
-//			assertEquals(ErrorCode.SUCCESS, expectedStatus);
-//			VoterResponse getVoterResponse = (VoterResponse) response;
-//			assertEquals(passport, getVoterResponse.getPassport());
-//			return getVoterResponse;
-//		} else {
-//			checkFailureResponse(response, expectedStatus);
-//			return null;
-//		}
-//	}
-
-//	protected List<VoterResponse> getAllVoters(int expeectedCount, ErrorCode expectedStatus) {
-//		Object response = client.get(baseURL + "/voter/", List.class);
-//		if (response instanceof List<?>) {
-//			assertEquals(ErrorCode.SUCCESS, expectedStatus);
-//			@SuppressWarnings("unchecked")
-//			List<VoterResponse> responseList = (List<VoterResponse>) response;
-//			assertEquals(expeectedCount, responseList.size());
-//			return responseList;
-//		} else {
-//			checkFailureResponse(response, expectedStatus);
-//			return null;
-//		}
-//	}
-//
-//	protected VoterResponse changeVoter(int id, VoterRequest request, ErrorCode expectedStatus) {
-//		Object response = client.put(baseURL + "/voter/" + id , request, VoterResponse.class);
-//		if (response instanceof VoterResponse) {
-//			assertEquals(ErrorCode.SUCCESS, expectedStatus);
-//			VoterResponse addVoterResponse = (VoterResponse) response;
-//			return addVoterResponse;
-//		} else {
-//			checkFailureResponse(response, expectedStatus);
-//			return null;
-//		}
-//	}
-//
-//	protected EmptySuccessResponse deleteVoter(int id, ErrorCode expectedStatus) {
-//		Object response = client.delete(baseURL + "/voter/" + id , EmptySuccessResponse.class);
-//		if (response instanceof EmptySuccessResponse) {
-//			assertEquals(ErrorCode.SUCCESS, expectedStatus);
-//			return (EmptySuccessResponse)response;
-//		} else {
-//			checkFailureResponse(response, expectedStatus);
-//			return null;
-//		}
-//	}
+	protected EmptySuccessResponse deleteHuman(int id, ErrorCode expectedStatus) {
+		Object response = client.delete(baseURL + "/human/" + id , EmptySuccessResponse.class);
+		if (response instanceof EmptySuccessResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			return (EmptySuccessResponse)response;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
 
 	//check Equals
-//	protected void checkVoterFields(VoterRequest voter1, VoterResponse voter2) {
-//		assertEquals(voter1.getFirstName(), voter2.getFirstName());
-//		assertEquals(voter1.getLastName(),  voter2.getLastName());
-//		assertEquals(voter1.getPatronymic(),voter2.getPatronymic());
-//		assertEquals(voter1.getBirthdate(), voter2.getBirthdate());
-//		assertEquals(voter1.getPassport(),  voter2.getPassport());
-//		assertEquals(voter1.getCity(),      voter2.getCity());
-//		assertEquals(voter1.getStreet(),    voter2.getStreet());
-//		assertEquals(voter1.getHouse(),     voter2.getHouse());
-//		assertEquals(voter1.getFlat(),      voter2.getFlat());
-//	}
+
+	protected void checkHumanFields(HumanRequest human1, HumanResponse human2) {
+		assertEquals(human1.getPhone(),				 human2.getPhone());
+		assertEquals(human1.getEmail(), 			 human2.getEmail());
+		assertEquals(human1.getPassword(),			 human2.getPassword());
+		assertEquals(human1.getFirstName(),	 		 human2.getFirstName());
+		assertEquals(human1.getLastName(), 	 		 human2.getLastName());
+		assertEquals(human1.getPatronymic(),		 human2.getPatronymic());
+		assertEquals(human1.getBirthdate(),			 human2.getBirthdate());
+		assertEquals(human1.getCountry(), 			 human2.getCountry());
+		assertEquals(human1.getCity(),				 human2.getCity());
+		assertEquals(human1.getRegistrationDate(), 	 human2.getRegistrationDate());
+	}
 
 }

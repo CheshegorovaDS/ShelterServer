@@ -9,6 +9,7 @@ import ru.omsu.imit.novikova.daoimpl.HumanDaoImpl;
 import ru.omsu.imit.novikova.exception.ShelterException;
 import ru.omsu.imit.novikova.model.Human;
 import ru.omsu.imit.novikova.rest.request.HumanRequest;
+import ru.omsu.imit.novikova.rest.response.EmptySuccessResponse;
 import ru.omsu.imit.novikova.rest.response.HumanResponse;
 import ru.omsu.imit.novikova.utils.ShelterUtils;
 
@@ -36,5 +37,12 @@ public class HumanService {
         } catch (ShelterException ex) {
             return ShelterUtils.failureResponse(ex);
         }
+    }
+
+    public Response deleteById(int id, String json) {
+        LOGGER.debug("Delete Human By id " + id);
+        humanDao.delete(id);
+        String response = GSON.toJson(new EmptySuccessResponse());
+        return Response.ok(response, MediaType.APPLICATION_JSON).build();
     }
 }
