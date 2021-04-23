@@ -3,7 +3,6 @@ package ru.omsu.imit.novikova.rest.request;
 import java.util.Date;
 
 public class HumanRequest {
-
     private String firstName;
     private String lastName;
     private String patronymic;

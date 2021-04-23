@@ -1,33 +1,951 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="89859240-2a5f-48a9-8903-3db21bc23275" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/mappers/OrganisationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/resources/OrganisationResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/response/OrganisationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/service/OrganisationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/AnnotationOrganisationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/OrganisationClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/dao/OrganisationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/dao/OrganisationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/BaseDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/BaseDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/OrganisationDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/OrganisationDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/model/Organisation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/model/Organisation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/HumanRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/HumanRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/OrganisationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/OrganisationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/response/HumanResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/response/HumanResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/service/HumanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/service/HumanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/AnnotationsHumanDaoTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/AnnotationsHumanDaoTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/BaseDAOTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/BaseDAOTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/BaseClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/BaseClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/HumanClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/HumanClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1578785761">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="class" value="1" />
+          <entry key="java" value="166" />
+          <entry key="properties" value="2" />
+          <entry key="xml" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="166" />
+          <entry key="Properties" value="2" />
+          <entry key="XML" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="4358" />
+          <entry key="xml" value="120" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="4358" />
+          <entry key="XML" value="120" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/HumanClientTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="379">
+              <caret line="88" column="5" lean-forward="true" selection-start-line="74" selection-end-line="88" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/OrganisationClientTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="41" column="52" lean-forward="true" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/BaseClientTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="169" selection-start-line="169" selection-end-line="169" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/OrganisationDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/OrganisationRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+              <folding>
+                <element signature="e#764#765#0" expanded="true" />
+                <element signature="e#790#791#0" expanded="true" />
+                <element signature="e#822#823#0" expanded="true" />
+                <element signature="e#850#851#0" expanded="true" />
+                <element signature="e#891#892#0" expanded="true" />
+                <element signature="e#928#929#0" expanded="true" />
+                <element signature="e#969#970#0" expanded="true" />
+                <element signature="e#1008#1009#0" expanded="true" />
+                <element signature="e#1040#1041#0" expanded="true" />
+                <element signature="e#1068#1069#0" expanded="true" />
+                <element signature="e#1100#1101#0" expanded="true" />
+                <element signature="e#1128#1129#0" expanded="true" />
+                <element signature="e#1163#1164#0" expanded="true" />
+                <element signature="e#1194#1195#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/dao/UserDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/BaseDAOTests.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/CommonClientTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/ru.omsu.imit.novikova/mybatis.mappers/User.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/model/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/mappers/UserMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/dao/HumanDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/HumanDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/resources/HumanResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/model/Human.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/mappers/HumanMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/service/HumanService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/dao/OrganisationDao.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/BaseDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/mappers/OrganisationMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/OrganisationDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/HumanRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/response/HumanResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/response/OrganisationResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/service/OrganisationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/resources/OrganisationResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/model/Organisation.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/BaseDAOTests.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/AnnotationsHumanDaoTests.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/AnnotationOrganisationTests.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/BaseClientTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/OrganisationRequest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/HumanClientTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/OrganisationClientTest.java" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="993" />
-    <option name="y" value="27" />
-    <option name="width" value="917" />
+    <option name="y" value="25" />
+    <option name="width" value="927" />
     <option name="height" value="1053" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617883297468" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+              <item name="daoimpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+              <item name="rest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+              <item name="mybatis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shelter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShelterServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="novikova" type="462c0819:PsiDirectoryNode" />
+              <item name="clienttests" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
   </component>
-  <component name="RunManager">
-    <configuration name="ShelterServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.omsu.imit.novikova.server.ShelterServer" />
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619175065220" />
+    <property name="last_opened_file_path" value="$USER_HOME$/darya/ServerApplications/course3-2/course3-2/task_ind" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.omsu.imit.novikova.shelter.clienttests" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/ru.omsu.imit.novikova/mybatis.mappers" />
+      <recent name="$PROJECT_DIR$/src/main/resources/ru.omsu.imit.novikova" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.OrganisationClientTest">
+    <configuration name="AnnotationOrganisationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shelter" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.omsu.imit.novikova.server.*" />
+          <option name="PATTERN" value="ru.omsu.imit.novikova.mybatis.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="ru.omsu.imit.novikova.mybatis" />
+      <option name="MAIN_CLASS_NAME" value="ru.omsu.imit.novikova.mybatis.AnnotationOrganisationTests" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AnnotationsHumanDaoTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shelter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.omsu.imit.novikova.mybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.omsu.imit.novikova.mybatis" />
+      <option name="MAIN_CLASS_NAME" value="ru.omsu.imit.novikova.mybatis.AnnotationsHumanDaoTests" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HumanClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shelter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.omsu.imit.novikova.shelter.clienttests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.omsu.imit.novikova.shelter.clienttests" />
+      <option name="MAIN_CLASS_NAME" value="ru.omsu.imit.novikova.shelter.clienttests.HumanClientTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HumanClientTest.testChangeHumanWithoutHuman" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shelter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.omsu.imit.novikova.shelter.clienttests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.omsu.imit.novikova.shelter.clienttests" />
+      <option name="MAIN_CLASS_NAME" value="ru.omsu.imit.novikova.shelter.clienttests.HumanClientTest" />
+      <option name="METHOD_NAME" value="testChangeHumanWithoutHuman" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrganisationClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shelter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.omsu.imit.novikova.shelter.clienttests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.omsu.imit.novikova.shelter.clienttests" />
+      <option name="MAIN_CLASS_NAME" value="ru.omsu.imit.novikova.shelter.clienttests.OrganisationClientTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.HumanClientTest.testChangeHumanWithoutHuman" />
+      <item itemvalue="JUnit.OrganisationClientTest" />
+      <item itemvalue="JUnit.AnnotationOrganisationTests" />
+      <item itemvalue="JUnit.AnnotationsHumanDaoTests" />
+      <item itemvalue="JUnit.HumanClientTest" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ShelterServer" />
+        <item itemvalue="JUnit.OrganisationClientTest" />
+        <item itemvalue="JUnit.HumanClientTest" />
+        <item itemvalue="JUnit.AnnotationsHumanDaoTests" />
+        <item itemvalue="JUnit.AnnotationOrganisationTests" />
+        <item itemvalue="JUnit.HumanClientTest.testChangeHumanWithoutHuman" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="89859240-2a5f-48a9-8903-3db21bc23275" name="Default Changelist" comment="" />
+      <created>1617883281135</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617883281135</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="OrganisationClientTest_testInsertOrganisation - 2021.04.23 at 16h 42m 13s.xml">
+      <configuration name="OrganisationClientTest.testInsertOrganisation" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrganisationClientTest_testGetById - 2021.04.23 at 16h 43m 52s.xml">
+      <configuration name="OrganisationClientTest.testGetById" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrganisationClientTest_testGetByIdWithoutOrganisation - 2021.04.23 at 16h 43m 57s.xml">
+      <configuration name="OrganisationClientTest.testGetByIdWithoutOrganisation" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrganisationClientTest_testGetByIdWithoutOrganisation - 2021.04.23 at 16h 44m 04s.xml">
+      <configuration name="OrganisationClientTest.testGetByIdWithoutOrganisation" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrganisationClientTest_testGetByEmail - 2021.04.23 at 16h 44m 09s.xml">
+      <configuration name="OrganisationClientTest.testGetByEmail" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrganisationClientTest_testGetByEmailWithoutOrganisation - 2021.04.23 at 16h 44m 14s.xml">
+      <configuration name="OrganisationClientTest.testGetByEmailWithoutOrganisation" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HumanClientTest_testChangeHumanWithoutHuman - 2021.04.23 at 16h 49m 04s.xml">
+      <configuration name="HumanClientTest.testChangeHumanWithoutHuman" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrganisationClientTest - 2021.04.23 at 16h 49m 33s.xml">
+      <configuration name="OrganisationClientTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrganisationClientTest - 2021.04.23 at 16h 50m 20s.xml">
+      <configuration name="OrganisationClientTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AnnotationOrganisationTests - 2021.04.23 at 16h 50m 32s.xml">
+      <configuration name="AnnotationOrganisationTests" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14665191" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.38486487" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37945947" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32972974" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32972974" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32972974" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1449917" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.53945947" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37945947" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32972974" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/response/BaseResponseObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ru.omsu.imit.novikova/mybatis.mappers/User.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/UserDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/utils/MyBatisUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/ws/rs/javax.ws.rs-api/2.1/javax.ws.rs-api-2.1.jar!/javax/ws/rs/client/SyncInvoker.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/dao/HumanDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mysql.jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="16" column="86" selection-start-line="16" selection-start-column="86" selection-end-line="16" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/mappers/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/HumanDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/BaseDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/mappers/HumanMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/server/ShelterServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/mappers/OrganisationMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/resources/HumanResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/HumanRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="146" selection-start-line="19" selection-start-column="146" selection-end-line="19" selection-end-column="189" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/response/HumanResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="55" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
+          <folding>
+            <element signature="e#1067#1068#0" expanded="true" />
+            <element signature="e#1092#1093#0" expanded="true" />
+            <element signature="e#1124#1125#0" expanded="true" />
+            <element signature="e#1152#1153#0" expanded="true" />
+            <element signature="e#1184#1185#0" expanded="true" />
+            <element signature="e#1212#1213#0" expanded="true" />
+            <element signature="e#1247#1248#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
+            <element signature="e#1314#1315#0" expanded="true" />
+            <element signature="e#1346#1347#0" expanded="true" />
+            <element signature="e#1381#1382#0" expanded="true" />
+            <element signature="e#1412#1413#0" expanded="true" />
+            <element signature="e#1449#1450#0" expanded="true" />
+            <element signature="e#1482#1483#0" expanded="true" />
+            <element signature="e#1516#1517#0" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
+            <element signature="e#1612#1613#0" expanded="true" />
+            <element signature="e#1643#1644#0" expanded="true" />
+            <element signature="e#1670#1671#0" expanded="true" />
+            <element signature="e#1711#1712#0" expanded="true" />
+            <element signature="e#1750#1751#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/response/OrganisationResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+          <folding>
+            <element signature="e#841#842#0" expanded="true" />
+            <element signature="e#873#874#0" expanded="true" />
+            <element signature="e#901#902#0" expanded="true" />
+            <element signature="e#933#934#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+            <element signature="e#996#997#0" expanded="true" />
+            <element signature="e#1027#1028#0" expanded="true" />
+            <element signature="e#1055#1056#0" expanded="true" />
+            <element signature="e#1081#1082#0" expanded="true" />
+            <element signature="e#1113#1114#0" expanded="true" />
+            <element signature="e#1141#1142#0" expanded="true" />
+            <element signature="e#1182#1183#0" expanded="true" />
+            <element signature="e#1219#1220#0" expanded="true" />
+            <element signature="e#1260#1261#0" expanded="true" />
+            <element signature="e#1299#1300#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/service/HumanService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="69" column="13" lean-forward="true" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/model/Human.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1402#1403#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/resources/OrganisationResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/dao/OrganisationDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/AnnotationsHumanDaoTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/BaseDAOTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#668#669#0" expanded="true" />
+            <element signature="e#739#740#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/model/Organisation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/CommonClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/client/ShelterClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/daoimpl/OrganisationDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/mybatis/AnnotationOrganisationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/rest/request/OrganisationRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <folding>
+            <element signature="e#764#765#0" expanded="true" />
+            <element signature="e#790#791#0" expanded="true" />
+            <element signature="e#822#823#0" expanded="true" />
+            <element signature="e#850#851#0" expanded="true" />
+            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#928#929#0" expanded="true" />
+            <element signature="e#969#970#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1040#1041#0" expanded="true" />
+            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="e#1100#1101#0" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+            <element signature="e#1163#1164#0" expanded="true" />
+            <element signature="e#1194#1195#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/BaseClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="169" selection-start-line="169" selection-end-line="169" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/omsu/imit/novikova/service/OrganisationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/HumanClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="88" column="5" lean-forward="true" selection-start-line="74" selection-end-line="88" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/omsu/imit/novikova/shelter/clienttests/OrganisationClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="41" column="52" lean-forward="true" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>

@@ -2,6 +2,7 @@ package ru.omsu.imit.novikova.daoimpl;
 
 import org.apache.ibatis.session.SqlSession;
 import ru.omsu.imit.novikova.mappers.HumanMapper;
+import ru.omsu.imit.novikova.mappers.OrganisationMapper;
 import ru.omsu.imit.novikova.mappers.UserMapper;
 import ru.omsu.imit.novikova.utils.MyBatisUtils;
 
@@ -18,4 +19,9 @@ public class BaseDAOImpl {
     protected HumanMapper getHumanMapper(SqlSession sqlSession) {
         return sqlSession.getMapper(HumanMapper.class);
     }
+
+    protected OrganisationMapper getOrganisationMapper(SqlSession sqlSession) {
+        return sqlSession.getMapper(OrganisationMapper.class);
+    }
+
 }

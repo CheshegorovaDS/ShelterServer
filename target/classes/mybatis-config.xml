@@ -14,8 +14,7 @@
 	<typeAliases>
 		<typeAlias alias="User" type="ru.omsu.imit.novikova.model.User" />
 		<typeAlias alias="Human" type="ru.omsu.imit.novikova.model.Human" />
-		<!--<typeAlias alias="Candidate" type="ru.omsu.imit.voting.model.Candidate" />-->
-		<!--<typeAlias alias="Bulletin" type="ru.omsu.imit.voting.model.Bulletin" />-->
+		<typeAlias alias="Organisation" type="ru.omsu.imit.novikova.model.Organisation" />
 	</typeAliases>
 
 	<environments default="development">

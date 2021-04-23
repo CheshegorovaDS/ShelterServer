@@ -9,6 +9,8 @@ public interface OrganisationDao {
 
     public Organisation getById(int id) throws ShelterException;
 
+    public Organisation getByEmail(String email) throws ShelterException;
+
     public void changeOrganisation(int id, Organisation newOrganisation) throws ShelterException;
 
     public void deleteAll();

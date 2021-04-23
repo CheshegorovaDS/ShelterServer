@@ -86,7 +86,7 @@ public class AnnotationsHumanDaoTests extends BaseDAOTests {
         Human human = humanDao.getByEmail("not_email@mail.ru");
     }
 
-    //Delete Voter
+    //Delete Human
 
     @Test(expected = ShelterException.class)
     public void testDeleteHuman() throws ShelterException {

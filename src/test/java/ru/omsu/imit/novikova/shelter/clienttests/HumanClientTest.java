@@ -9,6 +9,8 @@ import java.sql.Date;
 
 public class HumanClientTest extends BaseClientTest {
 
+//    Insert
+
     @Test
     public void testInsertHuman() {
         HumanRequest request = new HumanRequest("Дмитрий", "Пупкин", "Святославович", Date.valueOf("1954-7-1"),
@@ -16,6 +18,61 @@ public class HumanClientTest extends BaseClientTest {
                 "80001342422", "dg@mail.ru", "test");
         addHuman(request, ErrorCode.SUCCESS);
     }
+
+//    Get
+
+    @Test
+    public void testGetById() {
+        HumanRequest request = new HumanRequest("Дмитрий", "Пупкин", "Святославович", Date.valueOf("1954-7-1"),
+                "Россия", "Саранск", Date.valueOf("2020-7-1"),
+                "80001342422", "dg@mail.ru", "test");
+        HumanResponse response = getHumanById(addHuman(request, ErrorCode.SUCCESS).getId() , ErrorCode.SUCCESS);
+        checkHumanFields(request,response);
+    }
+
+    @Test
+    public void testGetByIdWithoutHuman() {
+        getHumanById(100 , ErrorCode.ITEM_NOT_FOUND);
+    }
+
+    @Test
+    public void testGetByEmail() {
+        HumanRequest request = new HumanRequest("Дмитрий", "Пупкин", "Святославович", Date.valueOf("1954-7-1"),
+                "Россия", "Саранск", Date.valueOf("2020-7-1"),
+                "80001342422", "dg@mail.ru", "test");
+        HumanResponse response = getHumanByEmail(addHuman(request, ErrorCode.SUCCESS).getEmail() , ErrorCode.SUCCESS);
+        checkHumanFields(request,response);
+    }
+
+    @Test
+    public void testGetByEmailWithoutHuman() {
+        getHumanByEmail("not_email@mail.ru" , ErrorCode.ITEM_NOT_FOUND);
+    }
+
+//    Update
+
+    @Test
+    public void testChangeHuman() {
+        HumanRequest request = new HumanRequest("Д", "Пупкин", "Святославович", Date.valueOf("1954-7-1"),
+                "Россия", "Саранск", Date.valueOf("2020-7-1"),
+                "80001342422", "dg@mail.ru", "test");
+        HumanResponse response = addHuman(request, ErrorCode.SUCCESS);
+        HumanRequest request2 = new HumanRequest("Дмитрий", "Пупкин", "Святославович", Date.valueOf("1954-7-1"),
+                "Россия", "Саранск", Date.valueOf("2020-7-1"),
+                "80001342422", "dg@mail.ru", "test");
+        changeHuman(response.getId(), request2, ErrorCode.SUCCESS);
+        checkHumanFields(request2,getHumanById(response.getId(),ErrorCode.SUCCESS));
+    }
+
+    @Test
+    public void testChangeHumanWithoutHuman(){
+        HumanRequest request = new HumanRequest("Д", "Пупкин", "Святославович", Date.valueOf("1954-7-1"),
+                "Россия", "Саранск", Date.valueOf("2020-7-1"),
+                "80001342422", "dg@mail.ru", "test");
+        changeHuman(100, request, ErrorCode.ITEM_NOT_FOUND);
+    }
+
+//    Delete
 
     @Test
     public void testDeleteById() {
@@ -25,33 +82,6 @@ public class HumanClientTest extends BaseClientTest {
         HumanResponse response = addHuman(request, ErrorCode.SUCCESS);
         deleteHuman(response.getId(), ErrorCode.SUCCESS);
     }
-
-    @Test
-    public void testGetById() {
-        HumanRequest request = new HumanRequest("Дмитрий", "Пупкин", "Святославович", Date.valueOf("1954-7-1"),
-                "Россия", "Саранск", Date.valueOf("2020-7-1"),
-                "80001342422", "dg@mail.ru", "test");
-//        HumanResponse response = getHu(addVoter(request, ErrorCode.SUCCESS).getId() , ErrorCode.SUCCESS);
-//        checkVoterFields(request,response);
-    }
-
-//    @Test
-//    public void testGetByIdWithoutVoter() {
-//        getVoterById(1 , ErrorCode.ITEM_NOT_FOUND);
-//    }
-//
-//    @Test
-//    public void testGetByPassport() {
-//        VoterRequest request = new VoterRequest("Пётр","Гривин", "Васильевич", Date.valueOf("1945-8-24"),"6666666666","Москва","Ленина","210","14",null);
-//        VoterResponse response = getVoterByPassport(addVoter(request, ErrorCode.SUCCESS).getPassport() , ErrorCode.SUCCESS);
-//        checkVoterFields(request,response);
-//    }
-//
-//    @Test
-//    public void testGetByPassportWithoutVoter() {
-//        getVoterById(1 , ErrorCode.ITEM_NOT_FOUND);
-//    }
-
 
     @Test
     public void testDeleteWithoutHuman() {

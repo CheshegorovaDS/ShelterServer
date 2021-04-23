@@ -71,6 +71,12 @@ public class HumanService {
             HumanRequest request = ShelterUtils.getClassInstanceFromJson(GSON, json, HumanRequest.class);
             Human human = humanDao.getById(id);
             human.updateUser(request.getPhone(), request.getEmail(), request.getPassword());
+            human.setFirstName(request.getFirstName());
+            human.setLastName(request.getLastName());
+            human.setPatronymic(request.getPatronymic());
+            human.setBirthdate(request.getBirthdate());
+            human.setCountry(request.getCountry());
+            human.setCity(request.getCity());
             humanDao.changeHuman(human.getId(), human);
             String response = GSON.toJson(new HumanResponse(human.getId(), human.getUser().getPhone(),human.getUser().getEmail(),
                     human.getUser().getPassword(), human.getFirstName(), human.getLastName(), human.getPatronymic(),

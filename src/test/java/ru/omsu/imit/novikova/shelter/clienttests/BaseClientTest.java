@@ -8,12 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.omsu.imit.novikova.client.ShelterClient;
 import ru.omsu.imit.novikova.dao.HumanDao;
+import ru.omsu.imit.novikova.dao.OrganisationDao;
 import ru.omsu.imit.novikova.daoimpl.HumanDaoImpl;
-import ru.omsu.imit.novikova.model.Human;
+import ru.omsu.imit.novikova.daoimpl.OrganisationDaoImpl;
 import ru.omsu.imit.novikova.rest.request.HumanRequest;
+import ru.omsu.imit.novikova.rest.request.OrganisationRequest;
 import ru.omsu.imit.novikova.rest.response.EmptySuccessResponse;
 import ru.omsu.imit.novikova.rest.response.FailureResponse;
 import ru.omsu.imit.novikova.rest.response.HumanResponse;
+import ru.omsu.imit.novikova.rest.response.OrganisationResponse;
 import ru.omsu.imit.novikova.server.ShelterServer;
 import ru.omsu.imit.novikova.server.config.Settings;
 import ru.omsu.imit.novikova.utils.ErrorCode;
@@ -29,6 +32,7 @@ public class BaseClientTest {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BaseClientTest.class);
 	private HumanDao humanDao = new HumanDaoImpl();
+	private OrganisationDao organisationDao = new OrganisationDaoImpl();
 
 	protected static ShelterClient client = new ShelterClient();
 	private static String baseURL;
@@ -58,6 +62,7 @@ public class BaseClientTest {
 	@Before
 	public void clearDataBase() {
 		humanDao.deleteAll();
+		organisationDao.deleteAll();
 	}
 	
 	public static String getBaseURL() {
@@ -72,6 +77,8 @@ public class BaseClientTest {
 
 	//Human
 
+//	Add
+
 	protected HumanResponse addHuman(HumanRequest request, ErrorCode expectedStatus) {
 		Object response = client.post(baseURL + "/human", request, HumanResponse.class);
 		if (response instanceof HumanResponse) {
@@ -84,20 +91,51 @@ public class BaseClientTest {
 			return null;
 		}
 	}
-//
-//	protected VoterResponse getVoterById(int id, ErrorCode expectedStatus) {
-//		Object response = client.get(baseURL + "/voter/" + id, VoterResponse.class);
-//		if (response instanceof VoterResponse) {
-//			assertEquals(ErrorCode.SUCCESS, expectedStatus);
-//			VoterResponse getVoterResponse = (VoterResponse) response;
-//			assertEquals(id, getVoterResponse.getId());
-//			return getVoterResponse;
-//		} else {
-//			checkFailureResponse(response, expectedStatus);
-//			return null;
-//		}
-//	}
-//
+
+//	Get
+
+	protected HumanResponse getHumanById(int id, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/human/" + id,  HumanResponse.class);
+		if (response instanceof HumanResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			HumanResponse getHumanResponse = (HumanResponse) response;
+			assertEquals(id, getHumanResponse.getId());
+			return getHumanResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	protected HumanResponse getHumanByEmail(String email, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/human/email=" + email,  HumanResponse.class);
+		if (response instanceof HumanResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			HumanResponse getHumanResponse = (HumanResponse) response;
+			assertEquals(email, getHumanResponse.getEmail());
+			return getHumanResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+//	Update
+
+	protected HumanResponse changeHuman(int id, HumanRequest request, ErrorCode expectedStatus) {
+		Object response = client.put(baseURL + "/human/" + id , request, HumanResponse.class);
+		if (response instanceof HumanResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			HumanResponse addHumanResponse = (HumanResponse) response;
+			return addHumanResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+//	Delete
+
 	protected EmptySuccessResponse deleteHuman(int id, ErrorCode expectedStatus) {
 		Object response = client.delete(baseURL + "/human/" + id , EmptySuccessResponse.class);
 		if (response instanceof EmptySuccessResponse) {
@@ -122,6 +160,90 @@ public class BaseClientTest {
 		assertEquals(human1.getCountry(), 			 human2.getCountry());
 		assertEquals(human1.getCity(),				 human2.getCity());
 		assertEquals(human1.getRegistrationDate(), 	 human2.getRegistrationDate());
+	}
+
+	//Organisation
+
+//	Add
+
+	protected OrganisationResponse addOrganisation(OrganisationRequest request, ErrorCode expectedStatus) {
+		Object response = client.post(baseURL + "/organisation", request, OrganisationResponse.class);
+		if (response instanceof OrganisationResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			OrganisationResponse organisationResponse = (OrganisationResponse) response;
+			checkOrganisationFields(request, organisationResponse);
+			return organisationResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+//	Get
+
+	protected OrganisationResponse getOrganisationById(int id, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/organisation/" + id,  OrganisationResponse.class);
+		if (response instanceof OrganisationResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			OrganisationResponse getOrganisationResponse = (OrganisationResponse) response;
+			assertEquals(id, getOrganisationResponse.getId());
+			return getOrganisationResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	protected OrganisationResponse getOrganisationByEmail(String email, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/organisation/email=" + email,  OrganisationResponse.class);
+		if (response instanceof OrganisationResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			OrganisationResponse organisationResponse = (OrganisationResponse) response;
+			assertEquals(email, organisationResponse.getEmail());
+			return organisationResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+//	Update
+
+	protected OrganisationResponse changeOrganisation(int id, OrganisationRequest request, ErrorCode expectedStatus) {
+		Object response = client.put(baseURL + "/organisation/" + id , request, OrganisationResponse.class);
+		if (response instanceof OrganisationResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			OrganisationResponse addOrganisationResponse = (OrganisationResponse) response;
+			return addOrganisationResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+//	Delete
+
+	protected EmptySuccessResponse deleteOrganisation(int id, ErrorCode expectedStatus) {
+		Object response = client.delete(baseURL + "/organisation/" + id , EmptySuccessResponse.class);
+		if (response instanceof EmptySuccessResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			return (EmptySuccessResponse)response;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	//check Equals
+
+	protected void checkOrganisationFields(OrganisationRequest request, OrganisationResponse response) {
+		assertEquals(request.getPhone(),			 response.getPhone());
+		assertEquals(request.getEmail(), 			 response.getEmail());
+		assertEquals(request.getPassword(),			 response.getPassword());
+		assertEquals(request.getTin(),	 		 	 response.getTIN());
+		assertEquals(request.getTitle(), 	 		 response.getTitle());
+		assertEquals(request.getAdditionalInfo(),	 response.getAdditionalInfo());
+		assertEquals(request.getRegistrationDate(),  response.getRegistrationDate());
 	}
 
 }

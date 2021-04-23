@@ -21,6 +21,15 @@ public class Organisation {
         this.registrationDate = registrationDate;
     }
 
+    public Organisation(int id, String phone, String email, String password,
+                        long TIN, String title, String additionalInfo, Date registrationDate) {
+        this.user = new User(id, phone, email, password);
+        this.TIN = TIN;
+        this.title = title;
+        this.additionalInfo = additionalInfo;
+        this.registrationDate = registrationDate;
+    }
+
     public int getId() {
         return user.getId();
     }
@@ -63,6 +72,12 @@ public class Organisation {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public void updateUser(String phone, String email, String password) {
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setPassword(password);
     }
 
     @Override
