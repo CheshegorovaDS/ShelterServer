@@ -35,4 +35,8 @@ public class BaseDAOImpl {
         return sqlSession.getMapper(AnimalMapper.class);
     }
 
+    protected CardMapper getCardMapper(SqlSession sqlSession) {
+        return sqlSession.getMapper(CardMapper.class);
+    }
+
 }

@@ -21,6 +21,6 @@ public interface AnimalMapper {
     @Delete("DELETE FROM shelter_bd.ANIMAL WHERE id = #{id}")
     public int delete(@Param("id") int id);
 
-    @Delete("DELETE FROM shelter_bd.USER")
+    @Delete("DELETE FROM shelter_bd.ANIMAL")
     public void deleteAll();
 }

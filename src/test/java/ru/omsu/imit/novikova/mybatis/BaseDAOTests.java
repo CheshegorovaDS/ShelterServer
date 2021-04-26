@@ -3,15 +3,15 @@ package ru.omsu.imit.novikova.mybatis;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import ru.omsu.imit.novikova.dao.CardDao;
 import ru.omsu.imit.novikova.dao.HumanDao;
 import ru.omsu.imit.novikova.dao.OrganisationDao;
 import ru.omsu.imit.novikova.dao.UserDao;
+import ru.omsu.imit.novikova.daoimpl.CardDaoImpl;
 import ru.omsu.imit.novikova.daoimpl.HumanDaoImpl;
 import ru.omsu.imit.novikova.daoimpl.OrganisationDaoImpl;
 import ru.omsu.imit.novikova.daoimpl.UserDaoImpl;
-import ru.omsu.imit.novikova.model.Human;
-import ru.omsu.imit.novikova.model.Organisation;
-import ru.omsu.imit.novikova.model.User;
+import ru.omsu.imit.novikova.model.*;
 import ru.omsu.imit.novikova.utils.MyBatisUtils;
 
 import static org.junit.Assert.assertEquals;
@@ -20,6 +20,7 @@ public class BaseDAOTests {
     protected UserDao userDAO = new UserDaoImpl();
     protected HumanDao humanDao = new HumanDaoImpl();
     protected OrganisationDao organisationDao = new OrganisationDaoImpl();
+    protected CardDao cardDao = new CardDaoImpl();
 
     @BeforeClass()
     public static void init() {
@@ -28,8 +29,9 @@ public class BaseDAOTests {
 
     @Before()
     public void clearDatabase() {
-        humanDao.deleteAll();
-        organisationDao.deleteAll();
+//        humanDao.deleteAll();
+//        organisationDao.deleteAll();
+//        cardDao.deleteAll();
     }
 
 
@@ -63,6 +65,25 @@ public class BaseDAOTests {
         assertEquals(organisation1.getTitle(), organisation2.getTitle());
         assertEquals(organisation1.getAdditionalInfo(), organisation2.getAdditionalInfo());
         assertEquals(organisation1.getRegistrationDate(), organisation2.getRegistrationDate());
+    }
+
+    protected void checkAnimalFields(Animal animal1, Animal animal2) {
+        assertEquals(animal1.getId(), animal2.getId());
+        assertEquals(animal1.getName(), animal2.getName());
+        assertEquals(animal1.getPhoto(), animal2.getPhoto());
+        assertEquals(animal1.getAge(), animal2.getAge());
+        assertEquals(animal1.getBreed(), animal2.getBreed());
+        assertEquals(animal1.getPassport(), animal2.getPassport());
+        assertEquals(animal1.getDescription(), animal2.getDescription());
+        assertEquals(animal1.getAnimalType(), animal2.getAnimalType());
+        assertEquals(animal1.getSex(), animal2.getSex());
+    }
+
+    protected void checkCardFields(Card card1, Card card2) {
+        checkUserFields(card1.getUser(), card2.getUser());
+        checkAnimalFields(card1.getAnimal(), card2.getAnimal());
+        assertEquals(card1.getCategory().getId(), card2.getCategory().getId());
+        assertEquals(card1.getCategory().getTitle(), card2.getCategory().getTitle());
     }
 
 }
