@@ -17,7 +17,7 @@ public class CardDaoImpl extends BaseDAOImpl implements CardDao {
         LOGGER.debug("DAO Insert Cards {}", card);
         try (SqlSession sqlSession = getSession()) {
             try {
-//                getAnimalMapper(sqlSession).insert(card.getAnimal());
+                getAnimalMapper(sqlSession).insert(card.getAnimal());
                 getCardMapper(sqlSession).insert(card);
             } catch (RuntimeException ex) {
                 LOGGER.debug("Can't insert Cards {}, {}", card, ex);
@@ -30,7 +30,7 @@ public class CardDaoImpl extends BaseDAOImpl implements CardDao {
     }
 
     @Override
-    public Card getById(int id) throws ShelterException {
+    public Card getById(int idUser, int idAnimal) throws ShelterException {
         return null;
     }
 

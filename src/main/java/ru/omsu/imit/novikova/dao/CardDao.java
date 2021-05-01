@@ -10,7 +10,7 @@ public interface CardDao {
 
     public Card insert(Card card);
 
-    public Card getById(int id) throws ShelterException;
+    public Card getById(int idUser, int idAnimal) throws ShelterException;
 
     public List<Card> getAll();
 

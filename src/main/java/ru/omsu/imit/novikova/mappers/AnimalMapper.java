@@ -5,8 +5,8 @@ import ru.omsu.imit.novikova.model.Animal;
 
 public interface AnimalMapper {
 
-    @Insert("INSERT INTO shelter_bd.ANIMAL  (name, photo, age, sex, breed, idAnimalType, passport, description) " +
-            "VALUES(#{name}, #{photo}, #{age}, #{sex}, #{breed}, #{idAnimalType}, #{passport}, #{description})")
+    @Insert("INSERT INTO shelter_bd.ANIMAL  (id, name, photo, age, sex, breed, idAnimalType, passport, description) " +
+            "VALUES( #{id}, #{name}, #{photo}, #{age}, #{sex}, #{breed}, #{age}, #{passport}, #{description} )")
     @Options(useGeneratedKeys = true)
     public Integer insert(Animal animal);
 
