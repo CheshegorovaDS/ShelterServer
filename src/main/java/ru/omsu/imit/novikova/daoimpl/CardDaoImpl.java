@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import ru.omsu.imit.novikova.dao.CardDao;
 import ru.omsu.imit.novikova.exception.ShelterException;
 import ru.omsu.imit.novikova.model.Card;
+import ru.omsu.imit.novikova.utils.ErrorCode;
 
 import java.util.List;
 
@@ -30,42 +31,122 @@ public class CardDaoImpl extends BaseDAOImpl implements CardDao {
     }
 
     @Override
+    public Card getByAnimalId(int idAnimal) throws ShelterException {
+        try (SqlSession sqlSession = getSession()) {
+            Card card = getCardMapper(sqlSession).getByAnimalId(idAnimal);
+            if(card == null){
+                throw new ShelterException(ErrorCode.ITEM_NOT_FOUND,Integer.toString(idAnimal));
+            }
+            return card;
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get Card By Id {}", ex);
+            throw ex;
+        }
+    }
+
+    @Override
     public Card getById(int idUser, int idAnimal) throws ShelterException {
-        return null;
+        try (SqlSession sqlSession = getSession()) {
+            Card card = getCardMapper(sqlSession).getById(idUser, idAnimal);
+            if(card == null){
+                throw new ShelterException(ErrorCode.ITEM_NOT_FOUND,Integer.toString(idUser, idAnimal));
+            }
+            return card;
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get Card By Id {}", ex);
+            throw ex;
+        }
     }
 
     @Override
     public List<Card> getAll() {
-        return null;
+        try (SqlSession sqlSession = getSession()) {
+            return getCardMapper(sqlSession).getAll();
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get all Cards {}", ex);
+            throw ex;
+        }
     }
 
     @Override
-    public List<Card> getByCategory() {
-        return null;
+    public List<Card> getByCategory(int idCategory) {
+        try (SqlSession sqlSession = getSession()) {
+            return getCardMapper(sqlSession).getAllByCategory(idCategory);
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get Cards by Category {}", ex);
+            throw ex;
+        }
     }
 
     @Override
-    public List<Card> getByAnimalType() {
-        return null;
+    public List<Card> getByAnimalType(int idAnimalType) {
+        try (SqlSession sqlSession = getSession()) {
+            return getCardMapper(sqlSession).getAllByAnimalType(idAnimalType);
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get Cards by AnimalType {}", ex);
+            throw ex;
+        }
     }
 
     @Override
-    public List<Card> getByUserId() {
-        return null;
+    public List<Card> getByUserId(int idUser) {
+        try (SqlSession sqlSession = getSession()) {
+            return getCardMapper(sqlSession).getAllByUser(idUser);
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get Cards by User {}", ex);
+            throw ex;
+        }
     }
 
     @Override
-    public void changeCard(int id, Card newCard) throws ShelterException {
-
+    public void changeCard(int idAnimal, Card newCard) throws ShelterException {
+        try (SqlSession sqlSession = getSession()) {
+            try {
+                getAnimalMapper(sqlSession).changeAnimal(idAnimal, newCard.getAnimal());
+                getCardMapper(sqlSession).changeCard(idAnimal, newCard);
+            } catch (RuntimeException ex) {
+                LOGGER.debug("Can't change Card {} {} ", idAnimal, ex);
+                sqlSession.rollback();
+                throw ex;
+            }
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void delete(int id) {
-
+        try (SqlSession sqlSession = getSession()) {
+            try {
+                getCardMapper(sqlSession).delete(id);
+                getAnimalMapper(sqlSession).delete(id);
+            } catch (RuntimeException ex) {
+                LOGGER.debug("Can't delete Card by id {} {}", id, ex);
+                sqlSession.rollback();
+                throw ex;
+            }
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void deleteAll() {
-
+        LOGGER.debug("DAO Delete All Cards {}");
+        try (SqlSession sqlSession = getSession()) {
+            try {
+                getCardMapper(sqlSession).deleteAll();
+                getAnimalMapper(sqlSession).deleteAll();
+            } catch (RuntimeException ex) {
+                LOGGER.debug("Can't delete all Cards {}", ex);
+                sqlSession.rollback();
+                throw ex;
+            }
+            sqlSession.commit();
+        }
     }
 }

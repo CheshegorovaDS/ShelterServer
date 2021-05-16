@@ -14,13 +14,13 @@ public class CommonClientTest extends BaseClientTest {
 
 	@Test
 	public void testWrongJson() {
-		Object response = client.postWrongJson(getBaseURL() + "/user", "{ text: ", FailureResponse.class);
+		Object response = client.postWrongJson(getBaseURL() + "/human", "{ text: ", FailureResponse.class);
 		checkFailureResponse((FailureResponse) response, ErrorCode.JSON_PARSE_EXCEPTION);
 	}
 
 	@Test
 	public void testEmptyJson() {
-		Object response = client.postWrongJson(getBaseURL() + "/user", "", FailureResponse.class);
+		Object response = client.postWrongJson(getBaseURL() + "/human", "", FailureResponse.class);
 		checkFailureResponse((FailureResponse) response, ErrorCode.NULL_REQUEST);
 	}
 

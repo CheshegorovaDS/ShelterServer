@@ -7,16 +7,17 @@ import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.omsu.imit.novikova.client.ShelterClient;
+import ru.omsu.imit.novikova.dao.CardDao;
 import ru.omsu.imit.novikova.dao.HumanDao;
 import ru.omsu.imit.novikova.dao.OrganisationDao;
+import ru.omsu.imit.novikova.daoimpl.CardDaoImpl;
 import ru.omsu.imit.novikova.daoimpl.HumanDaoImpl;
 import ru.omsu.imit.novikova.daoimpl.OrganisationDaoImpl;
+import ru.omsu.imit.novikova.model.Card;
+import ru.omsu.imit.novikova.rest.request.CardRequest;
 import ru.omsu.imit.novikova.rest.request.HumanRequest;
 import ru.omsu.imit.novikova.rest.request.OrganisationRequest;
-import ru.omsu.imit.novikova.rest.response.EmptySuccessResponse;
-import ru.omsu.imit.novikova.rest.response.FailureResponse;
-import ru.omsu.imit.novikova.rest.response.HumanResponse;
-import ru.omsu.imit.novikova.rest.response.OrganisationResponse;
+import ru.omsu.imit.novikova.rest.response.*;
 import ru.omsu.imit.novikova.server.ShelterServer;
 import ru.omsu.imit.novikova.server.config.Settings;
 import ru.omsu.imit.novikova.utils.ErrorCode;
@@ -24,6 +25,7 @@ import ru.omsu.imit.novikova.utils.MyBatisUtils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -33,6 +35,7 @@ public class BaseClientTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BaseClientTest.class);
 	private HumanDao humanDao = new HumanDaoImpl();
 	private OrganisationDao organisationDao = new OrganisationDaoImpl();
+	private CardDao cardDao = new CardDaoImpl();
 
 	protected static ShelterClient client = new ShelterClient();
 	private static String baseURL;
@@ -61,6 +64,7 @@ public class BaseClientTest {
 
 	@Before
 	public void clearDataBase() {
+	    cardDao.deleteAll();
 		humanDao.deleteAll();
 		organisationDao.deleteAll();
 	}
@@ -246,4 +250,132 @@ public class BaseClientTest {
 		assertEquals(request.getRegistrationDate(),  response.getRegistrationDate());
 	}
 
+//	Card
+	//Insert
+	protected CardResponse addCard(CardRequest request, ErrorCode expectedStatus) {
+		Object response = client.post(baseURL + "/card", request, CardResponse.class);
+		if (response instanceof CardResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			CardResponse cardResponse = (CardResponse) response;
+			checkCardFields(request, cardResponse);
+			return cardResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+    //	Get
+
+    protected CardResponse getCardById(int id, ErrorCode expectedStatus) {
+        Object response = client.get(baseURL + "/card/" + id,  CardResponse.class);
+        if (response instanceof CardResponse) {
+            assertEquals(ErrorCode.SUCCESS, expectedStatus);
+            CardResponse getCardResponse = (CardResponse) response;
+            assertEquals(id, getCardResponse.getIdAnimal());
+            return getCardResponse;
+        } else {
+            checkFailureResponse(response, expectedStatus);
+            return null;
+        }
+    }
+
+	protected List<CardResponse> getAllCard(int expectedCount, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/cards/", List.class);
+		if (response instanceof List<?>) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			@SuppressWarnings("unchecked")
+			List<CardResponse> responseList = (List<CardResponse>) response;
+			assertEquals(expectedCount, responseList.size());
+			return responseList;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	protected List<CardResponse> getAllCardByUser(int id, int expectedCount, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/cards/user="+ id, List.class);
+		if (response instanceof List<?>) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			@SuppressWarnings("unchecked")
+			List<CardResponse> responseList = (List<CardResponse>) response;
+			assertEquals(expectedCount, responseList.size());
+			return responseList;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	protected List<CardResponse> getAllCardByAnimalType(int id, int expectedCount, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/cards/animalType="+ id, List.class);
+		if (response instanceof List<?>) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			@SuppressWarnings("unchecked")
+			List<CardResponse> responseList = (List<CardResponse>) response;
+			assertEquals(expectedCount, responseList.size());
+			return responseList;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	protected List<CardResponse> getAllCardByCategory(int id, int expectedCount, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/cards/category="+ id, List.class);
+		if (response instanceof List<?>) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			@SuppressWarnings("unchecked")
+			List<CardResponse> responseList = (List<CardResponse>) response;
+			assertEquals(expectedCount, responseList.size());
+			return responseList;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	// Update
+
+	protected CardResponse changeCard(int id, CardRequest request, ErrorCode expectedStatus) {
+		Object response = client.put(baseURL + "/card/" + id , request, CardResponse.class);
+		if (response instanceof CardResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			CardResponse addCardResponse = (CardResponse) response;
+			return addCardResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+
+	//	Delete
+
+	protected EmptySuccessResponse deleteCard(int id, ErrorCode expectedStatus) {
+		Object response = client.delete(baseURL + "/card/" + id , EmptySuccessResponse.class);
+		if (response instanceof EmptySuccessResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			return (EmptySuccessResponse)response;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	//check Equals
+
+	protected void checkCardFields(CardRequest request, CardResponse response) {
+		assertEquals(request.getIdUser(),			 response.getIdUser());
+		assertEquals(request.getIdCategory(),		 response.getIdCategory());
+		assertEquals(request.getNameAnimal(),        response.getNameAnimal());
+        assertEquals(request.getPhotoAnimal(),       response.getPhotoAnimal());
+        assertEquals(request.getAgeAnimal(),         response.getAgeAnimal());
+        assertEquals(request.getBreedAnimal(),       response.getBreedAnimal());
+        assertEquals(request.getIdAnimalType(),      response.getAnimalType());
+        assertEquals(request.getSexAnimal(),         response.getSexAnimal());
+        assertEquals(request.getPassportAnimal(),    response.getPassportAnimal());
+        assertEquals(request.getDescriptionAnimal(), response.getDescriptionAnimal());
+	}
 }

@@ -1,13 +1,15 @@
 package ru.omsu.imit.novikova.rest.response;
 
+import ru.omsu.imit.novikova.model.Sex;
+
 public class CardResponse {
     private int idAnimal;
     private String nameAnimal;
     private String photoAnimal;
     private int ageAnimal;
     private String breedAnimal;
-    private String animalType;
-    private String sexAnimal;
+    private int animalType;
+    private Sex sexAnimal;
     private String passportAnimal;
     private String descriptionAnimal;
     private int idUser;
@@ -21,8 +23,8 @@ public class CardResponse {
     }
 
     public CardResponse(int idAnimal, String nameAnimal, String photoAnimal,
-                        int ageAnimal, String breedAnimal, String animalType,
-                        String sexAnimal, String passportAnimal, String descriptionAnimal,
+                        int ageAnimal, String breedAnimal, int animalType,
+                        Sex sexAnimal, String passportAnimal, String descriptionAnimal,
                         int idUser, String phoneUser, String emailUser, String passwordUser,
                         int idCategory, String titleCategory) {
         this.idAnimal = idAnimal;
@@ -62,11 +64,11 @@ public class CardResponse {
         return breedAnimal;
     }
 
-    public String getAnimalType() {
+    public int getAnimalType() {
         return animalType;
     }
 
-    public String getSexAnimal() {
+    public Sex getSexAnimal() {
         return sexAnimal;
     }
 

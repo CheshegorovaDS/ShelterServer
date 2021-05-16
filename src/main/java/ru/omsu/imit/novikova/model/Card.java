@@ -50,14 +50,33 @@ public class Card {
         this.animal = animal;
     }
 
+    public void updateCategory(Category newCategory) {
+        category.setId(newCategory.getId());
+        category.setTitle(newCategory.getTitle());
+    }
+
+    public void updateAnimal(String name, String photo, int age,
+                             String breed, AnimalType animalType, Sex sex,
+                             String passport, String description) {
+        animal.setName(name);
+        animal.setPhoto(photo);
+        animal.setAge(age);
+        animal.setBreed(breed);
+        animal.setAnimalType(animalType);
+        animal.setSex(sex);
+        animal.setPassport(passport);
+        animal.setDescription(description);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Card)) return false;
         Card card = (Card) o;
-        return Objects.equals(user, card.user) &&
+        boolean isEquals = Objects.equals(user, card.user) &&
                 Objects.equals(category, card.category) &&
                 Objects.equals(animal, card.animal);
+        return isEquals;
     }
 
     @Override

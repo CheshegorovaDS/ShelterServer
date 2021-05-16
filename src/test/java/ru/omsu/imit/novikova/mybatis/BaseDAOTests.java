@@ -29,9 +29,9 @@ public class BaseDAOTests {
 
     @Before()
     public void clearDatabase() {
-//        humanDao.deleteAll();
-//        organisationDao.deleteAll();
-//        cardDao.deleteAll();
+        cardDao.deleteAll();
+        humanDao.deleteAll();
+        organisationDao.deleteAll();
     }
 
 
