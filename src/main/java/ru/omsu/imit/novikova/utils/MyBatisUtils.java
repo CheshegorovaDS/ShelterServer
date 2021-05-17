@@ -24,6 +24,9 @@ public class MyBatisUtils {
     }
 
     public static SqlSessionFactory getSqlSessionFactory() {
+        if (sqlSessionFactory == null) {
+            initSqlSessionFactory();
+        }
         return sqlSessionFactory;
     }
 }
