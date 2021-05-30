@@ -28,6 +28,21 @@ public class UserDaoImpl extends BaseDAOImpl implements UserDao {
     }
 
     @Override
+    public User getByEmail(String email) throws ShelterException {
+        try (SqlSession sqlSession = getSession()) {
+            User user = getUserMapper(sqlSession).getByEmail(email);
+            if(user == null){
+                throw new ShelterException(ErrorCode.ITEM_NOT_FOUND, email);
+            }
+            return user;
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get User By Email {}", ex);
+            throw ex;
+        }
+    }
+
+    @Override
     public void deleteAll() {
         LOGGER.debug("DAO Delete All Users {}");
         try (SqlSession sqlSession = getSession()) {

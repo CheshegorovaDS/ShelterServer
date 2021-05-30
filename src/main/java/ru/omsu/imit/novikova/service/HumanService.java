@@ -1,5 +1,6 @@
 package ru.omsu.imit.novikova.service;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
@@ -26,7 +27,8 @@ public class HumanService {
         LOGGER.debug("Insert human " + json);
         try {
             HumanRequest request = ShelterUtils.getClassInstanceFromJson(GSON, json, HumanRequest.class);
-            Human human = new Human(0, request.getPhone(), request.getEmail(), request.getPassword(),
+            String hashPass = BCrypt.withDefaults().hashToString(12, request.getPassword().toCharArray());
+            Human human = new Human(0, request.getPhone(), request.getEmail(), hashPass,
                     request.getFirstName(),request.getLastName(),request.getPatronymic(),
                     request.getBirthdate(),request.getCountry(),request.getCity(),request.getRegistrationDate());
             Human addedHuman = humanDao.insert(human);
@@ -70,7 +72,8 @@ public class HumanService {
         try {
             HumanRequest request = ShelterUtils.getClassInstanceFromJson(GSON, json, HumanRequest.class);
             Human human = humanDao.getById(id);
-            human.updateUser(request.getPhone(), request.getEmail(), request.getPassword());
+            String hashPass = BCrypt.withDefaults().hashToString(12, request.getPassword().toCharArray());
+            human.updateUser(request.getPhone(), request.getEmail(), hashPass);
             human.setFirstName(request.getFirstName());
             human.setLastName(request.getLastName());
             human.setPatronymic(request.getPatronymic());

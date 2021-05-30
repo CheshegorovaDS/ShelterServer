@@ -8,6 +8,8 @@ import ru.omsu.imit.novikova.exception.ShelterException;
 import ru.omsu.imit.novikova.model.Category;
 import ru.omsu.imit.novikova.utils.ErrorCode;
 
+import java.util.List;
+
 public class CategoryDaoImpl extends BaseDAOImpl implements CategoryDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(CategoryDaoImpl.class);
 
@@ -22,6 +24,17 @@ public class CategoryDaoImpl extends BaseDAOImpl implements CategoryDao {
         }
         catch (RuntimeException ex) {
             LOGGER.debug("Can't get Category By Id {}", ex);
+            throw ex;
+        }
+    }
+
+    @Override
+    public List<Category> getAll() {
+        try (SqlSession sqlSession = getSession()) {
+            return getCategoryMapper(sqlSession).getAll();
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get all Categories {}", ex);
             throw ex;
         }
     }

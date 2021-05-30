@@ -20,9 +20,9 @@ public class AnnotationCardTests extends BaseDAOTests {
 
     @Test
     public void testInsertCard() throws ShelterException {
-        Category category = new Category(1, "Search Home");
+        Category category = new Category(1, "Ищет дом");
         Animal animal = new Animal(0, "Мурка", "", 1,
-                null, new AnimalType(1, "Cat"), Sex.F, null, null);
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
         Card card = new Card(insertUser(), category, animal);
         cardDao.insert(card);
         Card cardFromDB = cardDao.getById(card.getUser().getId(), card.getAnimal().getId());
@@ -41,30 +41,30 @@ public class AnnotationCardTests extends BaseDAOTests {
 
     @Test
     public void testChangeCard() throws ShelterException {
-        Category category = new Category(1, "Search Home");
+        Category category = new Category(1, "Ищет дом");
         User user = insertUser();
         Animal animal = new Animal(0, "Мурка", "", 1,
-                null, new AnimalType(1, "Cat"), Sex.F, null, null);
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
         Card card = new Card(user, category, animal);
         cardDao.insert(card);
         Card cardFromDB = cardDao.getById(card.getUser().getId(), card.getAnimal().getId());
         checkCardFields(card, cardFromDB);
         animal.setBreed("персидская");
-        Category category2 = new Category(2, "Lost");
+        Category category2 = new Category(2, "Потерялось");
         Card card2 = new Card(user, category2, animal);
         cardDao.changeCard(card.getAnimal().getId(), card2);
         cardFromDB = cardDao.getById(card.getUser().getId(), card.getAnimal().getId());
         TestCase.assertEquals(2,     cardFromDB.getCategory().getId());
-        assertEquals("Lost",    cardFromDB.getCategory().getTitle());
+        assertEquals("Потерялось",    cardFromDB.getCategory().getTitle());
         assertEquals("персидская", cardFromDB.getAnimal().getBreed());
     }
 
     @Test(expected = RuntimeException.class)
     public void testChangeAnimalNameToNull() throws ShelterException {
-        Category category = new Category(1, "Search Home");
+        Category category = new Category(1, "Ищет дом");
         User user = insertUser();
         Animal animal = new Animal(0, "Мурка", "", 1,
-                null, new AnimalType(1, "Cat"), Sex.F, null, null);
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
         Card card = new Card(user, category, animal);
         cardDao.insert(card);
         Card cardFromDB = cardDao.getById(card.getUser().getId(), card.getAnimal().getId());
@@ -84,10 +84,10 @@ public class AnnotationCardTests extends BaseDAOTests {
 
     @Test
     public void testGetAllCards() throws ShelterException {
-        Category category = new Category(1, "Search Home");
+        Category category = new Category(1, "Ищет дом");
         User user = insertUser();
         Animal animal1 = new Animal(0, "Мурка", "", 1,
-                null, new AnimalType(1, "Cat"), Sex.F, null, null);
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
         Card card1 = new Card(user, category, animal1);
         cardDao.insert(card1);
 
@@ -112,10 +112,10 @@ public class AnnotationCardTests extends BaseDAOTests {
 
     @Test
     public void testGetCardsByCategory() throws ShelterException {
-        Category category = new Category(1, "Search Home");
+        Category category = new Category(1, "Ищет дом");
         User user = insertUser();
         Animal animal1 = new Animal(0, "Мурка", "", 1,
-                null, new AnimalType(1, "Cat"), Sex.F, null, null);
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
         Card card1 = new Card(user, category, animal1);
         cardDao.insert(card1);
 
@@ -148,10 +148,10 @@ public class AnnotationCardTests extends BaseDAOTests {
 
     @Test
     public void testGetCardsByAnimalType() throws ShelterException {
-        Category category = new Category(1, "Search Home");
+        Category category = new Category(1, "Ищет дом");
         User user = insertUser();
         Animal animal1 = new Animal(0, "Мурка", "", 1,
-                null, new AnimalType(1, "Cat"), Sex.F, null, null);
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
         Card card1 = new Card(user, category, animal1);
         cardDao.insert(card1);
 
@@ -161,9 +161,9 @@ public class AnnotationCardTests extends BaseDAOTests {
         Card card2 = new Card(user2, category, animal2);
         cardDao.insert(card2);
 
-        Category category3 = new Category(2, "Lost");
+        Category category3 = new Category(2, "Потерялось");
         Animal animal3 = new Animal(0, animal1.getName(), animal1.getPhoto(), animal1.getAge(),
-                animal1.getBreed(), new AnimalType(2, "Dog"), animal1.getSex(), animal1.getPassport(), animal1.getDescription());
+                animal1.getBreed(), new AnimalType(2, "Собака"), animal1.getSex(), animal1.getPassport(), animal1.getDescription());
         User user3 = insertUser("80001442222", "dgqw@mail.ru");
         Card card3 = new Card(user3, category3, animal3);
         cardDao.insert(card3);
@@ -183,10 +183,10 @@ public class AnnotationCardTests extends BaseDAOTests {
 
     @Test
     public void testGetCardsByUser() throws ShelterException {
-        Category category = new Category(1, "Search Home");
+        Category category = new Category(1, "Ищет дом");
         User user = insertUser();
         Animal animal1 = new Animal(0, "Мурка", "", 1,
-                null, new AnimalType(1, "Cat"), Sex.F, null, null);
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
         Card card1 = new Card(user, category, animal1);
         cardDao.insert(card1);
 
@@ -220,9 +220,9 @@ public class AnnotationCardTests extends BaseDAOTests {
 
     @Test(expected = ShelterException.class)
     public void testDeleteCard() throws ShelterException {
-        Category category = new Category(1, "Search Home");
+        Category category = new Category(1, "Ищет дом");
         Animal animal = new Animal(0, "Мурка", "", 1,
-                null, new AnimalType(1, "Cat"), Sex.F, null, null);
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
         Card card = new Card(insertUser(), category, animal);
         cardDao.insert(card);
         Card cardFromDB = cardDao.getById(card.getUser().getId(), card.getAnimal().getId());

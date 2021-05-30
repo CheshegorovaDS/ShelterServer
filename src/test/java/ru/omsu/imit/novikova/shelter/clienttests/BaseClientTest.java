@@ -1,5 +1,6 @@
 package ru.omsu.imit.novikova.shelter.clienttests;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.junit.AfterClass;
 import org.junit.Assume;
 import org.junit.Before;
@@ -13,10 +14,13 @@ import ru.omsu.imit.novikova.dao.OrganisationDao;
 import ru.omsu.imit.novikova.daoimpl.CardDaoImpl;
 import ru.omsu.imit.novikova.daoimpl.HumanDaoImpl;
 import ru.omsu.imit.novikova.daoimpl.OrganisationDaoImpl;
+import ru.omsu.imit.novikova.model.AnimalType;
 import ru.omsu.imit.novikova.model.Card;
+import ru.omsu.imit.novikova.model.Category;
 import ru.omsu.imit.novikova.rest.request.CardRequest;
 import ru.omsu.imit.novikova.rest.request.HumanRequest;
 import ru.omsu.imit.novikova.rest.request.OrganisationRequest;
+import ru.omsu.imit.novikova.rest.request.UserRequest;
 import ru.omsu.imit.novikova.rest.response.*;
 import ru.omsu.imit.novikova.server.ShelterServer;
 import ru.omsu.imit.novikova.server.config.Settings;
@@ -77,6 +81,24 @@ public class BaseClientTest {
 		assertTrue(response instanceof FailureResponse);
 		FailureResponse failureResponseObject = (FailureResponse) response;
 		assertEquals(expectedStatus, failureResponseObject.getErrorCode());
+	}
+
+	//Login
+
+	protected TokenResponse login(UserRequest request, ErrorCode expectedStatus) {
+		Object response = client.get(
+				baseURL + "/login/login=" + request.getLogin() + "&pass=" + request.getPassword(),
+				TokenResponse.class
+		);
+		if (response instanceof TokenResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			TokenResponse getTokenResponse = (TokenResponse) response;
+			assertEquals(((TokenResponse) response).getAccessToken(), "acessToken");
+			return getTokenResponse;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
 	}
 
 	//Human
@@ -156,7 +178,6 @@ public class BaseClientTest {
 	protected void checkHumanFields(HumanRequest human1, HumanResponse human2) {
 		assertEquals(human1.getPhone(),				 human2.getPhone());
 		assertEquals(human1.getEmail(), 			 human2.getEmail());
-		assertEquals(human1.getPassword(),			 human2.getPassword());
 		assertEquals(human1.getFirstName(),	 		 human2.getFirstName());
 		assertEquals(human1.getLastName(), 	 		 human2.getLastName());
 		assertEquals(human1.getPatronymic(),		 human2.getPatronymic());
@@ -164,6 +185,7 @@ public class BaseClientTest {
 		assertEquals(human1.getCountry(), 			 human2.getCountry());
 		assertEquals(human1.getCity(),				 human2.getCity());
 		assertEquals(human1.getRegistrationDate(), 	 human2.getRegistrationDate());
+		assertTrue(BCrypt.verifyer().verify(human1.getPassword().toCharArray(), human2.getPassword()).verified);
 	}
 
 	//Organisation
@@ -243,11 +265,11 @@ public class BaseClientTest {
 	protected void checkOrganisationFields(OrganisationRequest request, OrganisationResponse response) {
 		assertEquals(request.getPhone(),			 response.getPhone());
 		assertEquals(request.getEmail(), 			 response.getEmail());
-		assertEquals(request.getPassword(),			 response.getPassword());
 		assertEquals(request.getTin(),	 		 	 response.getTIN());
 		assertEquals(request.getTitle(), 	 		 response.getTitle());
 		assertEquals(request.getAdditionalInfo(),	 response.getAdditionalInfo());
 		assertEquals(request.getRegistrationDate(),  response.getRegistrationDate());
+		assertTrue(BCrypt.verifyer().verify(request.getPassword().toCharArray(), response.getPassword()).verified);
 	}
 
 //	Card
@@ -377,5 +399,37 @@ public class BaseClientTest {
         assertEquals(request.getSexAnimal(),         response.getSexAnimal());
         assertEquals(request.getPassportAnimal(),    response.getPassportAnimal());
         assertEquals(request.getDescriptionAnimal(), response.getDescriptionAnimal());
+	}
+
+	//Animal Type
+
+	protected List<AnimalTypeResponse> getAllAnimalTypes(int expectedCount, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/animal_types/", List.class);
+		if (response instanceof List<?>) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			@SuppressWarnings("unchecked")
+			List<AnimalTypeResponse> responseList = (List<AnimalTypeResponse>) response;
+			assertEquals(expectedCount, responseList.size());
+			return responseList;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
+	//Category
+
+	protected List<CategoryResponse> getAllCategories(int expectedCount, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/categories/", List.class);
+		if (response instanceof List<?>) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			@SuppressWarnings("unchecked")
+			List<CategoryResponse> responseList = (List<CategoryResponse>) response;
+			assertEquals(expectedCount, responseList.size());
+			return responseList;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
 	}
 }

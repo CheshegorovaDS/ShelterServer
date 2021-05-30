@@ -1,5 +1,6 @@
 package ru.omsu.imit.novikova.service;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
@@ -25,7 +26,8 @@ public class OrganisationService {
         LOGGER.debug("Insert organisation " + json);
         try {
             OrganisationRequest request = ShelterUtils.getClassInstanceFromJson(GSON, json, OrganisationRequest.class);
-            Organisation organisation = new Organisation(0, request.getPhone(), request.getEmail(), request.getPassword(),
+            String hashPass = BCrypt.withDefaults().hashToString(12, request.getPassword().toCharArray());
+            Organisation organisation = new Organisation(0, request.getPhone(), request.getEmail(), hashPass,
                     request.getTin(), request.getTitle(), request.getAdditionalInfo(), request.getRegistrationDate());
             Organisation addedOrganisation = organisationDao.insert(organisation);
             String response = GSON.toJson(new OrganisationResponse(
@@ -74,7 +76,8 @@ public class OrganisationService {
         try {
             OrganisationRequest request = ShelterUtils.getClassInstanceFromJson(GSON, json, OrganisationRequest.class);
             Organisation organisation = organisationDao.getById(id);
-            organisation.updateUser(request.getPhone(), request.getEmail(), request.getPassword());
+            String hashPass = BCrypt.withDefaults().hashToString(12, request.getPassword().toCharArray());
+            organisation.updateUser(request.getPhone(), request.getEmail(), hashPass);
             organisation.setTIN(request.getTin());
             organisation.setTitle(request.getTitle());
             organisation.setAdditionalInfo(request.getAdditionalInfo());

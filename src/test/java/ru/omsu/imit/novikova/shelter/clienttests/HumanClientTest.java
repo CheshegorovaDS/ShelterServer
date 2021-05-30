@@ -61,7 +61,7 @@ public class HumanClientTest extends BaseClientTest {
                 "Россия", "Саранск", Date.valueOf("2020-7-1"),
                 "80001342422", "dg@mail.ru", "test");
         changeHuman(response.getId(), request2, ErrorCode.SUCCESS);
-        checkHumanFields(request2,getHumanById(response.getId(),ErrorCode.SUCCESS));
+        checkHumanFields(request2, getHumanById(response.getId(), ErrorCode.SUCCESS));
     }
 
     @Test
