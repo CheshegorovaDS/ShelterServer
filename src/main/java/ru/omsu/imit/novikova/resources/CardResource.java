@@ -4,6 +4,7 @@ import ru.omsu.imit.novikova.service.CardService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/api")
 public class CardResource {
@@ -50,6 +51,16 @@ public class CardResource {
     @Produces("application/json")
     public Response getAllByCategory(@PathParam(value = "idCategory") int id) {
         return cardService.getAllByCategory(id);
+    }
+
+    @GET
+    @Path("/cards/filters")
+    @Produces("application/json")
+    public Response getAllByFilters(
+            @QueryParam(value = "category") List<Integer> listCategoriesId,
+            @QueryParam(value = "animal_type") List<Integer> listAnimalTypesId
+    ) {
+        return cardService.getAllByFilters(listCategoriesId, listAnimalTypesId);
     }
 
     @PUT

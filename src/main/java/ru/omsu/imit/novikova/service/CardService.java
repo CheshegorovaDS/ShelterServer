@@ -141,6 +141,32 @@ public class CardService {
         return Response.ok(response, MediaType.APPLICATION_JSON).build();
     }
 
+    public Response getAllByFilters(List<Integer> idCategoryList, List<Integer> idAnimalTypeList) {
+        LOGGER.debug("Get All Cards By Category");
+        List<CardResponse> responseList = new ArrayList<>();
+        List<Card> itemList = new ArrayList<>();
+
+        for (int i = 0; i < idCategoryList.size(); i++){
+            itemList.addAll(cardDao.getByCategory(idCategoryList.get(i)));
+        }
+        for (int i = 0; i < idAnimalTypeList.size(); i++){
+            itemList.addAll(cardDao.getByAnimalType(idAnimalTypeList.get(i)));
+        }
+
+        for (Card card : itemList)
+            responseList.add(new CardResponse(
+                    card.getAnimal().getId(), card.getAnimal().getName(), card.getAnimal().getPhoto(),
+                    card.getAnimal().getAge(), card.getAnimal().getBreed(), card.getAnimal().getAnimalType().getId(),
+                    card.getAnimal().getSex(), card.getAnimal().getPassport(), card.getAnimal().getDescription(),
+                    card.getUser().getId(), card.getUser().getPhone(),
+                    card.getUser().getEmail(), card.getUser().getPassword(),
+                    card.getCategory().getId(), card.getCategory().getTitle()
+            ));
+
+        String response = GSON.toJson(responseList);
+        return Response.ok(response, MediaType.APPLICATION_JSON).build();
+    }
+
     public Response changeCard(int id, String json) {
         LOGGER.debug("Change Card By id " + id);
         try {
