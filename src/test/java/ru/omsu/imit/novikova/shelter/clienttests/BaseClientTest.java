@@ -93,7 +93,6 @@ public class BaseClientTest {
 		if (response instanceof TokenResponse) {
 			assertEquals(ErrorCode.SUCCESS, expectedStatus);
 			TokenResponse getTokenResponse = (TokenResponse) response;
-			assertEquals(((TokenResponse) response).getAccessToken(), "acessToken");
 			return getTokenResponse;
 		} else {
 			checkFailureResponse(response, expectedStatus);

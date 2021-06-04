@@ -39,4 +39,6 @@ public class BaseDAOImpl {
         return sqlSession.getMapper(CardMapper.class);
     }
 
+    protected CookieMapper getCookieMapper( SqlSession sqlSession) { return sqlSession.getMapper(CookieMapper.class); }
+
 }
