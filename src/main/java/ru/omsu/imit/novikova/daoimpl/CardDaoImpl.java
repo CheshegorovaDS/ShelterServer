@@ -105,6 +105,17 @@ public class CardDaoImpl extends BaseDAOImpl implements CardDao {
     }
 
     @Override
+    public List<Card> getByString(String str) {
+        try (SqlSession sqlSession = getSession()) {
+            return getCardMapper(sqlSession).getAllByString(str + "%");
+        }
+        catch (RuntimeException ex) {
+            LOGGER.debug("Can't get Cards by String {}", ex);
+            throw ex;
+        }
+    }
+
+    @Override
     public void changeCard(int idAnimal, Card newCard) throws ShelterException {
         try (SqlSession sqlSession = getSession()) {
             try {

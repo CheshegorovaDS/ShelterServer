@@ -64,6 +64,17 @@ public interface CardMapper {
     })
     public List<Card> getAllByAnimalType(int idAnimalType);
 
+    @Select("SELECT * FROM shelter_bd.CARD, shelter_bd.ANIMAL, shelter_bd.ANIMAL_TYPE " +
+            "WHERE shelter_bd.CARD.idAnimal = shelter_bd.ANIMAL.id AND " +
+            "shelter_bd.ANIMAL.idAnimalType = shelter_bd.ANIMAL_TYPE.id AND " +
+            "(shelter_bd.ANIMAL.name LIKE #{request} OR shelter_bd.ANIMAL_TYPE.title LIKE #{request} OR shelter_bd.ANIMAL.breed LIKE #{request})")
+    @Results( {
+            @Result(property = "animal", column = "idAnimal",javaType = Animal.class, one = @One(select = "ru.omsu.imit.novikova.mappers.AnimalMapper.getById", fetchType = FetchType.EAGER)),
+            @Result(property = "user", column = "idUser", javaType = User.class, one = @One(select = "ru.omsu.imit.novikova.mappers.UserMapper.getById", fetchType = FetchType.EAGER)),
+            @Result(property = "category", column = "idCategory", javaType = Category.class, one = @One(select = "ru.omsu.imit.novikova.mappers.CategoryMapper.getById", fetchType = FetchType.EAGER))
+    })
+    public List<Card> getAllByString(@Param("request") String request);
+
     @Update("UPDATE shelter_bd.CARD SET idCategory = #{c.category.id} WHERE idAnimal = #{idAnimal} ")
     public void changeCard(@Param("idAnimal") int idAnimal, @Param("c") Card card);
 

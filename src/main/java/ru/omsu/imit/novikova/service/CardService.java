@@ -141,6 +141,23 @@ public class CardService {
         return Response.ok(response, MediaType.APPLICATION_JSON).build();
     }
 
+    public Response getAllByString(String request) {
+        LOGGER.debug("Get All Cards By String");
+        List<Card> itemList = cardDao.getByString(request);
+        List<CardResponse> responseList = new ArrayList<>();
+        for (Card card : itemList)
+            responseList.add(new CardResponse(
+                    card.getAnimal().getId(), card.getAnimal().getName(), card.getAnimal().getPhoto(),
+                    card.getAnimal().getAge(), card.getAnimal().getBreed(), card.getAnimal().getAnimalType().getId(),
+                    card.getAnimal().getSex(), card.getAnimal().getPassport(), card.getAnimal().getDescription(),
+                    card.getUser().getId(), card.getUser().getPhone(),
+                    card.getUser().getEmail(), card.getUser().getPassword(),
+                    card.getCategory().getId(), card.getCategory().getTitle()
+            ));
+        String response = GSON.toJson(responseList);
+        return Response.ok(response, MediaType.APPLICATION_JSON).build();
+    }
+
     public Response getAllByFilters(List<Integer> idCategoryList, List<Integer> idAnimalTypeList) {
         LOGGER.debug("Get All Cards By Category");
         List<CardResponse> responseList = new ArrayList<>();

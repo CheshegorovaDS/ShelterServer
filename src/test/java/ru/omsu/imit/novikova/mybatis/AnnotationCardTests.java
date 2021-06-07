@@ -216,6 +216,43 @@ public class AnnotationCardTests extends BaseDAOTests {
         assertEquals(list, list2);
     }
 
+    @Test
+    public void testGetCardsByString() throws ShelterException {
+        Category category = new Category(1, "Ищет дом");
+        User user = insertUser();
+        Animal animal1 = new Animal(0, "Мурка", "", 1,
+                null, new AnimalType(1, "Кошка"), Sex.F, null, null);
+        Card card1 = new Card(user, category, animal1);
+        cardDao.insert(card1);
+
+        Animal animal2 = new Animal(0, animal1.getName(), animal1.getPhoto(), animal1.getAge(),
+                animal1.getBreed(), animal1.getAnimalType(), animal1.getSex(), animal1.getPassport(), animal1.getDescription());
+        User user2 = insertUser("80001342222", "dgww@mail.ru");
+        Card card2 = new Card(user2, category, animal2);
+        cardDao.insert(card2);
+
+        Category category3 = new Category(2, "Потерялось");
+        Animal animal3 = new Animal(0, animal1.getName(), animal1.getPhoto(), animal1.getAge(),
+                animal1.getBreed(), new AnimalType(2, "Собака"), animal1.getSex(), animal1.getPassport(), animal1.getDescription());
+        User user3 = insertUser("80001442222", "dgqw@mail.ru");
+        Card card3 = new Card(user3, category3, animal3);
+        cardDao.insert(card3);
+
+        List<Card> list = new ArrayList<>();
+        list.add(card1);
+        list.add(card2);
+        list.add(card3);
+        List<Card> list2 = cardDao.getByString("Му");
+        assertEquals(list, list2);
+    }
+
+    @Test
+    public void testGetCardsByStringWithoutCards() {
+        List<Card> list = new ArrayList<>();
+        List<Card> list2 = cardDao.getByString("Ъ");
+        assertEquals(list, list2);
+    }
+
     //Delete Human
 
     @Test(expected = ShelterException.class)

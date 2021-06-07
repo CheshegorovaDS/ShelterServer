@@ -22,6 +22,8 @@ public interface CardDao {
 
     public List<Card> getByUserId(int idUser);
 
+    public List<Card> getByString(String str);
+
     public void changeCard(int id, Card newCard) throws ShelterException;
 
     public void delete(int id);

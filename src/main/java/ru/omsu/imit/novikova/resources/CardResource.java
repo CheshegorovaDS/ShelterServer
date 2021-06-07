@@ -54,6 +54,13 @@ public class CardResource {
     }
 
     @GET
+    @Path("/cards/request={request}")
+    @Produces("application/json")
+    public Response getAllByString(@PathParam(value = "request") String request) {
+        return cardService.getAllByString(request);
+    }
+
+    @GET
     @Path("/cards/filters")
     @Produces("application/json")
     public Response getAllByFilters(
