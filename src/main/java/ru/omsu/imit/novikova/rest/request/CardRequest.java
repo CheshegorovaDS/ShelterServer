@@ -1,6 +1,5 @@
 package ru.omsu.imit.novikova.rest.request;
 
-import ru.omsu.imit.novikova.model.Animal;
 import ru.omsu.imit.novikova.model.Sex;
 
 public class CardRequest {
