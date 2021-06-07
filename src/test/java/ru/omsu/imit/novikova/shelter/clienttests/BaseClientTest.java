@@ -357,6 +357,20 @@ public class BaseClientTest {
 		}
 	}
 
+	protected List<CardResponse> getAllCardByString(String request, int expectedCount, ErrorCode expectedStatus) {
+		Object response = client.get(baseURL + "/cards/request="+ request, List.class);
+		if (response instanceof List<?>) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			@SuppressWarnings("unchecked")
+			List<CardResponse> responseList = (List<CardResponse>) response;
+			assertEquals(expectedCount, responseList.size());
+			return responseList;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
 	// Update
 
 	protected CardResponse changeCard(int id, CardRequest request, ErrorCode expectedStatus) {

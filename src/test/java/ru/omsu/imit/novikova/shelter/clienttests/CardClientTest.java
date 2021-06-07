@@ -93,6 +93,18 @@ public class CardClientTest extends BaseClientTest{
         getAllCardByCategory(0, 0, ErrorCode.SUCCESS);
     }
 
+    @Test
+    public void testGetAllByString() {
+        addListCards();
+        getAllCardByString("Му", 3, ErrorCode.SUCCESS);
+    }
+
+    @Test
+    public void testGetAllByStringWhenEmpty() {
+        getAllCardByString("Ъ", 0, ErrorCode.SUCCESS);
+    }
+
+
     // Update
 
     @Test
@@ -159,7 +171,7 @@ public class CardClientTest extends BaseClientTest{
                 "Россия", "Саранск", Date.valueOf("2020-7-1"),
                 "80001342433", "aaa@mail.ru", "test");
         HumanResponse humanResponse2 = getHumanById(addHuman(humanRequest2, ErrorCode.SUCCESS).getId() , ErrorCode.SUCCESS);
-        CardRequest request2 = new CardRequest(humanResponse2.getId(),1, "Мурка", "", 1,
+        CardRequest request2 = new CardRequest(humanResponse2.getId(),1, "Мирка", "", 1,
                 null, 1, Sex.F, null, null);
         CardResponse response2 = getCardById(addCard(request2, ErrorCode.SUCCESS).getIdAnimal(), ErrorCode.SUCCESS);
 //        list.add(response2);
@@ -168,8 +180,8 @@ public class CardClientTest extends BaseClientTest{
                 "Россия", "Саранск", Date.valueOf("2020-7-1"),
                 "80001333422", "bbb@mail.ru", "test");
         HumanResponse humanResponse3 = getHumanById(addHuman(humanRequest3, ErrorCode.SUCCESS).getId() , ErrorCode.SUCCESS);
-        CardRequest request3 = new CardRequest(humanResponse3.getId(),1, "Мурка", "", 1,
-                null, 2, Sex.F, null, null);
+        CardRequest request3 = new CardRequest(humanResponse3.getId(),1, "Мерка", "", 1,
+                "Мулвлв", 2, Sex.F, null, null);
         CardResponse response3 = getCardById(addCard(request3, ErrorCode.SUCCESS).getIdAnimal(), ErrorCode.SUCCESS);
         list.add(response3);
 
@@ -178,7 +190,7 @@ public class CardClientTest extends BaseClientTest{
         CardResponse response4 = getCardById(addCard(request4, ErrorCode.SUCCESS).getIdAnimal(), ErrorCode.SUCCESS);
 //        list.add(response4);
 
-        CardRequest request5 = new CardRequest(humanResponse3.getId(),2, "Мурка", "", 1,
+        CardRequest request5 = new CardRequest(humanResponse3.getId(),2, "Морка", "", 1,
                 null, 2, Sex.F, null, null);
         CardResponse response5 = getCardById(addCard(request5, ErrorCode.SUCCESS).getIdAnimal(), ErrorCode.SUCCESS);
 //        list.add(response5);
