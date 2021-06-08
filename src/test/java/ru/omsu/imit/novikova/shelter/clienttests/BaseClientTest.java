@@ -100,6 +100,19 @@ public class BaseClientTest {
 		}
 	}
 
+	//Logout
+
+	protected EmptySuccessResponse logout(String uuid, ErrorCode expectedStatus) {
+		Object response = client.delete(baseURL + "/logout/uuid=" + uuid , EmptySuccessResponse.class);
+		if (response instanceof EmptySuccessResponse) {
+			assertEquals(ErrorCode.SUCCESS, expectedStatus);
+			return (EmptySuccessResponse)response;
+		} else {
+			checkFailureResponse(response, expectedStatus);
+			return null;
+		}
+	}
+
 	//Human
 
 //	Add

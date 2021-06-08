@@ -12,6 +12,7 @@ import ru.omsu.imit.novikova.daoimpl.UserDaoImpl;
 import ru.omsu.imit.novikova.exception.ShelterException;
 import ru.omsu.imit.novikova.model.Cookie;
 import ru.omsu.imit.novikova.model.User;
+import ru.omsu.imit.novikova.rest.response.EmptySuccessResponse;
 import ru.omsu.imit.novikova.rest.response.TokenResponse;
 import ru.omsu.imit.novikova.utils.ErrorCode;
 import ru.omsu.imit.novikova.utils.ShelterUtils;
@@ -48,10 +49,12 @@ public class UserService {
         }
     }
 
-    public void logout(String uuid) {
+    public Response logout(String uuid) {
         LOGGER.debug("Service logout by uuid {}", uuid);
         try {
             cookieDao.deleteByUUID(uuid);
+            String response = GSON.toJson(new EmptySuccessResponse());
+            return Response.ok(response, MediaType.APPLICATION_JSON).build();
         } catch (Exception ex) {
             LOGGER.info("Service can't logout user ", ex);
             throw ex;
